@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@mui/material';
 
@@ -8,11 +8,15 @@ import useStyles from './styles';
 import './styles.css';
 
 const NavBar = () => {
-
-    console.log(Link);
     const styles = useStyles();
 
-    const user = null;
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+    useEffect(() => {
+        const token = user?.token;
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, []);
 
     return (
         <AppBar sx={styles.appBar} position="static" color="inherit" >

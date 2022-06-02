@@ -3,12 +3,12 @@ import { TextField, Grid, InputAdornment, IconButton } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const Input = ({ name, label, autoFocus, type, half, handleChange, handleShowPassword }) => {
+const Input = ({ name, label, autoFocus, type, half, onChange, handleShowPassword }) => {
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
         <TextField 
             name={name}
-            onChange={handleChange}
+            onChange={onChange}
             variant="outlined"
             required
             fullWidth
