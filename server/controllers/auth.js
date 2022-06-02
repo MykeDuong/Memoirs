@@ -5,7 +5,7 @@ export const regAuth = async (req, res) => {
         const passport = req.app.settings.passport;
         User.register({email: req.body.email, name: req.body.name}, req.body.password, (err, user) => {
             if (err) {
-                //console.log(err);
+                console.log(err);
                 res.status(401).json({ message: err.message });
             } else {
                 passport.authenticate("local")(req, res, () => {
@@ -33,8 +33,14 @@ export const loginAuth = async (req, res) => {
 
                 console.log(err);
             } else {
+                console.log(user);
                 passport.authenticate("local")(req, res, () => {
-                    res.status(200).json(user);
+                    const userVal = {
+                        name: req.user.name,
+                        email: req.user.email
+                    }
+                    console.log(userVal);
+                    res.status(200).json(userVal);
                 });
             }
         });
