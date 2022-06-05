@@ -8,3 +8,4 @@ export const REG_AUTH = 'REG_AUTH';
 export const LOGIN_AUTH = 'LOGIN_AUTH';
 export const FACEBOOK_AUTH = 'FACEBOOK_AUTH';
 export const GOOGLE_AUTH = 'GOOGLE_AUTH';
+export const LOGOUT = 'LOGOUT';

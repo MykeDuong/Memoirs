@@ -19,7 +19,6 @@ const Form = ({ currentId, setCurrentId }) => {
 
     const post = useSelector((state) => {
         const chosen = currentId ? state.posts.find((p) => p._id === currentId) : null;
-        console.log(currentId, chosen);
         return chosen;
     });
     

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@mui/material';
 
 import trails from './../../images/trails.png';
@@ -10,13 +11,30 @@ import './styles.css';
 const NavBar = () => {
     const styles = useStyles();
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     useEffect(() => {
-        const token = user?.token;
+        window.addEventListener('storage', () => {
+            const item = localStorage.getItem('profile');
+            
+            console.log("do sth");
+            if (item) {
+              setUser(JSON.parse(item));
+            }
+        });
+        
+        return () => window.removeEventListener('storage', () => {});
+    }, [user]);
 
-        setUser(JSON.parse(localStorage.getItem('profile')));
-    }, []);
+    const logout = () => {
+        dispatch( { type: 'LOGOUT'} );
+        navigate('/');
+        setUser(null);
+    }
 
     return (
         <AppBar sx={styles.appBar} position="static" color="inherit" >
@@ -27,11 +45,11 @@ const NavBar = () => {
             <img  src={trails} alt="trails" height="60" />
         </div>
         <Toolbar sx={styles.toolbar}>
-            {user? (
+            {user ? (
                 <div className="profile" >
-                    <Avatar sx={styles.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
-                    <Typography sx={styles.userName} variant="h6">{user.result.name}</Typography>
-                    <Button variant="contained" sx={styles.logout} color="secondary" onClick={() => {}}>Logout</Button>
+                    <Avatar sx={styles.purple} alt={user.name} src={user.imageUrl}>{user.name.charAt(0)}</Avatar>
+                    <Typography sx={styles.userName} variant="h6">{user.name}</Typography>
+                    <Button variant="contained" sx={styles.logout} color="secondary" onClick={logout}>Logout</Button>
                 </div>
             ) : (
                 <div>

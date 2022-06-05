@@ -9,7 +9,6 @@ export const getPosts = () => async (dispatch) => {
             type: FETCH_ALL,
             payload: data
         }
-        console.log("Data" + data);
         dispatch(action);
     } catch (err) {console.log(err);}
 }

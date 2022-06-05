@@ -11,4 +11,8 @@ export const likePost = (id) => axios.patch(`${urlPost}/${id}/likePost`);
 
 export const regAuth = (userData) => axios.post(`${urlAuth}/register`, userData);
 export const loginAuth = (userData) => axios.post(`${urlAuth}/login`, userData);
-export const googleAuth = () => axios.post(`${urlAuth}/google`);
+
+export const googleAuth = () => {
+    window.open("http://localhost:5000/auth/google", '_self');
+    axios.get(`${urlAuth}/google`);
+};
