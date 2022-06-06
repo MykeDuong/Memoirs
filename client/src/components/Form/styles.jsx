@@ -4,7 +4,6 @@
 import { css, jsx } from "@emotion/react";
 
 const styles = {
-  //return {
     root: (theme) => css`
       &.MuiTextField-root {
         margin: ${theme.spacing(1)}
@@ -13,7 +12,7 @@ const styles = {
     
     field: (theme) => css`
       margin: ${theme.spacing(1)}
-  `,
+    `,
 
     paper: (theme) => css`
       padding: ${theme.spacing(2)}
@@ -33,7 +32,6 @@ const styles = {
     buttonSubmit: css`
       margin-bottom: 10px
     `,
-  //}
 };
 
 export default styles;
