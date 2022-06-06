@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_POST, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING } from '../constants/actionTypes';
 
 const postReducer = (state = { isLoading: true, posts: [] }, action) => {
     switch (action.type) {
@@ -14,8 +14,10 @@ const postReducer = (state = { isLoading: true, posts: [] }, action) => {
                 numberOfPages: action.payload.numberOfPages
             };
         case FETCH_BY_SEARCH:
-            console.log(action.payload);
             return { ...state, posts: action.payload };
+        case FETCH_POST:
+            console.log(action.payload);
+            return { ...state, post: action.payload };
         case CREATE:
             console.log(action.payload);
             return {...state, posts: [...state.posts, action.payload] };

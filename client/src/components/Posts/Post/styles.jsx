@@ -37,6 +37,11 @@ function styles() {
       padding: 0 16px;
     `,
 
+    cardAction: css`
+      display: block;
+      text-align: initial
+    `,
+    
     cardActions: css`
       padding: 0 16px 8px 16px;
       display: flex;
