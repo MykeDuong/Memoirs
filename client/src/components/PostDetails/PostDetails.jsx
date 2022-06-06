@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
+import CommentSection from './CommentSection';
 
 import { getPost, getPostsBySearch } from '../../actions/posts';
 import useStyles from './styles';
@@ -30,15 +31,14 @@ const PostDetails = () => {
 
     if (!post) return null;
     const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
-    console.log(recommendedPosts);
 
     const openPost = (_id) => navigate(`../../posts/${_id}`);
 
     if (isLoading) {
-      return (
-        <Paper elevation={6} sx={styles.loadingPaper} >
-          <CircularProgress size="7em" />
-        </Paper>
+        return (
+          <Paper elevation={6} sx={styles.loadingPaper} >
+            <CircularProgress size="7em" />
+          </Paper>
       )
     }
 
@@ -55,7 +55,7 @@ const PostDetails = () => {
             <Divider style={{ margin: '20px 0' }} />
             <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
             <Divider style={{ margin: '20px 0' }} />
-            <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
+            <CommentSection post={post} />
             <Divider style={{ margin: '20px 0' }} />
           </div>
           <div className="imageSection">

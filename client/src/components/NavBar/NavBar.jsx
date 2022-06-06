@@ -49,7 +49,7 @@ const NavBar = () => {
                 <div className="profile" >
                     <Avatar sx={styles.purple} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
                     <Typography sx={styles.userName} variant="h6">{user.result.name}</Typography>
-                    <Button variant="contained" sx={styles.logout} color="secondary" onClick={logout}>Logout</Button>
+                    <Button variant="contained" sx={styles.logout} color="error" onClick={logout}>Logout</Button>
                 </div>
             ) : (
                 <div>

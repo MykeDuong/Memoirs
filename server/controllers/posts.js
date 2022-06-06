@@ -25,7 +25,6 @@ export const getPostsBySearch = async (req, res) => {
         const title = new RegExp(searchQuery, 'i');
 
         const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ] });
-        console.log(posts);
         res.json({ data: posts });
     } catch (err) {
         res.status(404).json({ message: err.message });
@@ -76,8 +75,6 @@ export const deletePost = async (req, res) => {
 
     await PostMessage.findByIdAndRemove(id);
 
-    console.log("delete...");
-
     res.json ({ message: "Post deleted successfully" });
 }
 
@@ -99,6 +96,19 @@ export const likePost = async (req, res) => {
         //delete like
         post.likes = post.likes.filter((id) => id !== String(req.userId));
     }
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
+
+    res.json(updatedPost);
+}
+
+export const commentPost = async (req, res) => {
+    const { id } = req.params;
+    const { value } = req.body;
+
+    const post = await PostMessage.findById(id);
+
+    post.comments.push(value);
 
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
 

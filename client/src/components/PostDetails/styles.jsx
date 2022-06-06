@@ -44,7 +44,6 @@ const styles = ({
     border-radius: 15px; 
     height: 39vh;
   `
-
 });
 
 export default styles;

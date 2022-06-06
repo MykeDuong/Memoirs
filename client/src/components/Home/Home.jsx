@@ -53,7 +53,7 @@ const Home = () => {
                         <AppBar sx={styles.appBarSearch} position="static" color="inherit">
                             <TextField sx={styles.searchBox} name="search" variant="outlined" label="Search Memoirs" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={handleKeyDown}/>
                             <ChipInput sx={styles.searchBox} tags={tags} setTags={setTags}/>
-                            <Button sx={styles.searchBox} onClick={searchPost} sx={styles.searchButton} variant="contained" color="primary">Search</Button>
+                            <Button onClick={searchPost} sx={styles.searchButton} variant="contained" color="primary">Search</Button>
                         </AppBar>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
                         {(!searchQuery && !tags.length) && (
