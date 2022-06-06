@@ -3,7 +3,7 @@ import { deepPurple } from '@mui/material/colors';
 
 const styles = () => ({
   appBar: css`
-    border-radius: 15;
+    border-radius: 15px;
     margin: 30px 0;
     display: flex;
     flex-direction: row;
@@ -13,7 +13,6 @@ const styles = () => ({
   `,
 
   heading: css`
-    color: rgba(0,183,255, 1);
     text-decoration: none
   `,
 

@@ -4,7 +4,6 @@ function styles() {
   return {
     mainContainer: css`
       display: flex;
-      align-items: center
     `,
     smMargin: (theme) => css`
       margin: ${theme.spacing(1)}

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@mui/material';
 
-import trails from './../../images/trails.png';
+import trails from './../../images/biography.png';
 
 import useStyles from './styles';
 import './styles.css';
@@ -40,9 +40,9 @@ const NavBar = () => {
         <AppBar sx={styles.appBar} position="static" color="inherit" >
         <div className="brandContainer" >
             <Typography component={Link} to="/" sx={styles.heading} variant="h2" align="center">
-                Memoirs
+            Ɱҽʍօìɾʂ&nbsp;
             </Typography>
-            <img  src={trails} alt="trails" height="60" />
+            <img src={trails} alt="trails" height="70" />
         </div>
         <Toolbar sx={styles.toolbar}>
             {user ? (

@@ -52,7 +52,7 @@ const Form = ({ currentId, setCurrentId }) => {
     }
 
     return (
-        <Paper sx={styles.paper}>
+        <Paper sx={styles.paper} elevation={6}>
             <form className="form" autoComplete="off" noValidate onSubmit={handleSubmit}>
                 <Typography variant="h6">Creating a Memoir</Typography>
                 <TextField sx={styles.field} name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})} />

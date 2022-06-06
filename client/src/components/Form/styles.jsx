@@ -15,7 +15,8 @@ const styles = {
     `,
 
     paper: (theme) => css`
-      padding: ${theme.spacing(2)}
+      padding: ${theme.spacing(2)};
+      margin-bottom: 1rem
     `,
 
     form: css`

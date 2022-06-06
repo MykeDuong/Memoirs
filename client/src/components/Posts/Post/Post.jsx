@@ -32,7 +32,7 @@ const Post = ({ post, setCurrentId }) => {
     };
 
     return (
-        <Card sx={styles.card} >
+        <Card sx={styles.card} raised elevation={6}>
             <CardMedia sx={styles.media} image={post.selectedFile} title={post.title} />
             <div className="overlay">
                 <Typography variant="h6">{post.name}</Typography>
