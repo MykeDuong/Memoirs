@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Container } from '@mui/material';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
@@ -12,11 +13,23 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 
 const App = () => {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const user = JSON.parse(localStorage.getItem('profile')); // TODO: listen for changes
+    useEffect(() => {
+      function checkUserData() {
+        setUser(localStorage.getItem('profile'));
+      }
+    
+      window.addEventListener('storage', checkUserData)
+    
+      return () => {
+        window.removeEventListener('storage', checkUserData)
+      }
+    }, []);
+
     return (
         <BrowserRouter>
-          <GoogleOAuthProvider clientId="276004399616-r5mhe885s5qd2drd0juiqd4hjh2c8eea.apps.googleusercontent.com">
+          <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
             <Container maxWidth="xl">
                 <NavBar />
                 <Routes>
@@ -27,7 +40,7 @@ const App = () => {
                     <Route path="/auth" element={!user ? <Auth /> : <Navigate to="/posts" />} />
                 </Routes>
             </Container>
-          </GoogleOAuthProvider>;
+          </GoogleOAuthProvider>
         </BrowserRouter>
     );
 }
