@@ -6,6 +6,7 @@ import FileBase from 'react-file-base64';
 import { css, jsx } from "@emotion/react"
 import { TextField, Button, Typography, Paper} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { createPost, updatePost } from '../../actions/posts';
 
@@ -17,12 +18,13 @@ const Form = ({ currentId, setCurrentId }) => {
     const user = JSON.parse(localStorage.getItem('profile'));
 
     const post = useSelector((state) => {
-        const chosen = currentId ? state.posts.find((p) => p._id === currentId) : null;
+        const chosen = currentId ? state.posts.posts.find((p) => p._id === currentId) : null;
         return chosen;
     });
     
     const styles = useStyles;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (post) setPostData(post);
@@ -37,7 +39,7 @@ const Form = ({ currentId, setCurrentId }) => {
         if (currentId) {
             dispatch(updatePost(currentId, { ...postData, name: user?.result?.name}));
         } else {
-            dispatch(createPost({ ...postData, name: user?.result?.name}));
+            dispatch(createPost({ ...postData, name: user?.result?.name}, navigate));
         }
     };
 

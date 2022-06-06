@@ -1,11 +1,28 @@
 .card {
     display: flex;
     width: 100%;
-    @media (max-width:900px) {
-      flex-wrap: wrap;
-      flex-direction: column
-    }
 }
+
+.imageSection {
+    margin-left: 20px;
+}
+
+.recommendedPosts {
+    display: flex;
+}
+
+@media (max-width:900px) {
+    .card {
+        flex-wrap: wrap;
+        flex-direction: column
+    }
+    .imageSection {
+        margin-left: 0
+    }
+    .recommendedPosts {
+        flex-direction: column
+    }
+  }
 
 .section {
     border-radius: 20px;
@@ -13,10 +30,6 @@
     flex: 1;
 }
 
-.imageSection {
-    margin-left: 20px;
-    @media (max-width:900px) {margin-left: 0}
-}
 
 .media {
     border-radius: 20px;

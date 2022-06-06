@@ -40,13 +40,14 @@ export const getPost = (id) => async (dispatch) => {
     } catch (err) {console.log(err.response.data);}
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
     try {
         const { data } = await api.createPost(post);
         const action = {
             type: CREATE,
             payload: data
         }
+        navigate(`${data._id}`);
         dispatch(action);
     } catch (err) {console.log(err);}
 }
