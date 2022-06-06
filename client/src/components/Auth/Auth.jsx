@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@mui/material';
+import decode from "jwt-decode";
+
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
+import { GoogleLogin } from '@react-oauth/google';
 
 
 import Input from './Input';
-
 import useStyles from './styles';
-import './bootstrap-social.css';
 import './styles.css';
 
 const Auth = () => {
 
     const styles = useStyles();
+    const ref = useRef(null);
     const dispatch = useDispatch();
+    
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
-
     const [isSignup, setSignup] = useState(false);
+    const [width, setWidth] = useState(0);
+
+    const [user, setUser] = useState(localStorage.getItem('profile'));
+    console.log(user);
+
+    useEffect(() => {
+        setWidth(ref.current.offsetWidth);
+    }, [ref])
 
     const handleSubmit = (e) => {
     }
@@ -32,8 +43,22 @@ const Auth = () => {
         setShowPassword((prev) => !prev);
     }
 
-    const handleGoogleAuth = () => {
+    const GoogleSuccess = async (CredentialResponse) => {
+        const token = CredentialResponse.credential;
+        const profile = decode(token);
+
+        try {
+            dispatch({ type: 'AUTH', data: { ...profile, token } });
+            navigate('/');
+        } catch(err) {
+            console.log(err);
+        }
     } 
+
+    const GoogleFailure = (err) => {
+        console.log(err);
+        console.log("Google Sign In was unsucessful. Try again later");
+    }
 
     const switchMode = () => {
         setSignup((prev) => !prev);
@@ -51,31 +76,35 @@ const Auth = () => {
                         {
                             isSignup && (
                                 <>
-                                    <Input name="firstName" label="First Name" onChange={(e) => {}} autoFocus half/>
-                                    <Input name="lastName" label="Last Name" onChange={(e) => {}} half/>
+                                    <Input name="firstName" label="First Name" onChange={handleChange} autoFocus half/>
+                                    <Input name="lastName" label="Last Name" onChange={handleChange} half/>
                                 </>
                             )
                         }
-                        <Input name="email" label="Email" onChange={(e) => {}} type="email"/>
-                        <Input name="password" label="Password" onChange={(e) => {}} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
+                        <Input name="email" label="Email" onChange={handleChange} type="email"/>
+                        <Input name="password" label="Password" onChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
                         { isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password"/> }
                     </Grid>
-                    <Button type="submit" fullWidth variant="contained" color="primary" sx={styles.submit}>
+                    <GoogleLogin
+                        size='large'
+                        theme='filled_blue'
+                        width={width}
+                        text='continue_with'
+                        logo_alignment='left'
+                        onSuccess={GoogleSuccess}
+                        onError={GoogleFailure}
+                    />
+                    <Button type="submit" fullWidth variant="contained" color="primary" sx={styles.submit} ref={ref}>
                         {isSignup ? "Sign Up" : "Sign In"}
                     </Button>
-                </form>
-                <Button className="btn btn-block btn-social btn-google" type="submit" fullWidth variant="contained" color="primary" onClick={handleGoogleAuth}>
-                    <i className="fab fa-google"></i>
-                    Sign In with Google
-                </Button>
-                <Grid container justifyContent="flex-end">
-                    <Grid item>
-                        <Button onClick={switchMode}>
-                            { isSignup? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
-                        </Button>
+                    <Grid container justifyContent="flex-end">
+                        <Grid item>
+                            <Button onClick={switchMode}>
+                                { isSignup? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+                            </Button>
+                        </Grid>
                     </Grid>
-                </Grid>
-
+                </form>
             </Paper>
         </Container>
     )

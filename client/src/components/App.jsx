@@ -9,40 +9,12 @@ import styles from './styles';
 import './styles.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const App = () => {
-
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const getUser = () => {
-          fetch("http://localhost:5000/auth/login/success", {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": true,
-            },
-          })
-            .then((response) => {
-              if (response.status === 200) return response.json();
-              throw new Error("authentication has been failed!");
-            })
-            .then((resObject) => {
-                setUser(resObject.user);
-                localStorage.setItem('profile', resObject.user);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        };
-        getUser();
-      }, []);
-
     return (
         <BrowserRouter>
+          <GoogleOAuthProvider clientId="276004399616-r5mhe885s5qd2drd0juiqd4hjh2c8eea.apps.googleusercontent.com">
             <Container maxWidth="lg">
                 <NavBar />
                 <Routes>
@@ -50,6 +22,7 @@ const App = () => {
                     <Route path="/auth" exact element={<Auth />} />
                 </Routes>
             </Container>
+          </GoogleOAuthProvider>;
         </BrowserRouter>
     );
 }
