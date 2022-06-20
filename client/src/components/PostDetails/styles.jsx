@@ -43,6 +43,11 @@ const styles = ({
     padding: 20px; 
     border-radius: 15px; 
     height: 39vh;
+  `,
+
+  commentSection:css`
+    width: 100%
+
   `
 });
 

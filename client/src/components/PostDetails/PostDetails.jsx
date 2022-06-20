@@ -53,7 +53,7 @@ const PostDetails = () => {
             <Typography variant="h6">Created by: {post.name}</Typography>
             <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
             <Divider style={{ margin: '20px 0' }} />
-            <CommentSection post={post} />
+            <CommentSection css={styles.commentSection} post={post} />
             <Divider style={{ margin: '20px 0' }} />
           </div>
           <div className="imageSection">

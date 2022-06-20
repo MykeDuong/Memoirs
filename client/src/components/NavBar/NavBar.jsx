@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@mui/material';
 
-import trails from './../../images/biography.png';
+import logo from './../../images/logo.png';
 
 import useStyles from './styles';
 import './styles.css';
@@ -36,18 +36,19 @@ const NavBar = () => {
         setUser(null);
     }
 
+    const brandClick = () => {
+        navigate('/');
+    }
+
     return (
         <AppBar sx={styles.appBar} position="static" color="inherit" >
-        <div className="brandContainer" >
-            <Typography component={Link} to="/" sx={styles.heading} variant="h2" align="center">
-            Ɱҽʍօìɾʂ&nbsp;
-            </Typography>
-            <img src={trails} alt="trails" height="70" />
+        <div className="brandContainer" onClick={brandClick}>
+            <img src={logo} alt="trails" />
         </div>
         <Toolbar sx={styles.toolbar}>
             {user ? (
                 <div className="profile" >
-                    <Avatar sx={styles.purple} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
+                    <Avatar sx={styles.avatar} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
                     <Typography sx={styles.userName} variant="h6">{user.result.name}</Typography>
                     <Button variant="contained" sx={styles.logout} color="error" onClick={logout}>Logout</Button>
                 </div>

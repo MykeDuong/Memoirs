@@ -47,7 +47,7 @@ const Form = ({ currentId, setCurrentId }) => {
         return (
             <Paper sx={styles.paper}>
                 <Typography variant="h6" align='center'>
-                    Please Sign In to create your own memories and like others' memories
+                    Please Sign In to create your own Memoirs and like others' Memoirs
                 </Typography>
             </Paper>
         )

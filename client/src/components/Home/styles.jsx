@@ -19,7 +19,7 @@ const styles = ({
 
     gridContainer: (theme) => css`
         justify-content: space-between;
-        @media (max-width:900px) {flex-direction: column-reverse}
+        @media (max-width: 600px) {flex-direction: column-reverse}
     `,
 
     searchBox: css`

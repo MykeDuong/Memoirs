@@ -43,10 +43,21 @@
         flex-wrap: wrap;
         flex-direction: column
     }
+
+    .section {
+        width: 95%
+    }
+
     .imageSection {
         margin-left: 0
     }
     .recommendedPosts {
         flex-direction: column
+    }
+}
+
+@media (max-width: 600px) {
+    .commentsOuterContainer {
+        flex-direction: column;
     }
 }

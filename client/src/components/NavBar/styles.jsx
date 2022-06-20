@@ -34,7 +34,11 @@ const styles = () => ({
 
   userName: css`
     display: flex;
-    align-items: center
+    align-items: center;
+    
+    @media screen and (max-width: 900px) {
+      display: none
+    }
   `,
 
   brandContainer: css`
@@ -42,9 +46,20 @@ const styles = () => ({
     align-items: center;
   `,
 
-  purple: (theme) => css`
+  avatar: (theme) => css`
     color: ${theme.palette.getContrastText(deepPurple[500])};
     background-color: ${deepPurple[500]};
+    
+    @media screen and (max-width: 650px) {
+      display: none
+    }
+  `,
+
+  logout: css`
+    @media screen and (max-width: 400px) {
+      width: 20px;
+      font-size: 10px
+    }
   `
 });
 
