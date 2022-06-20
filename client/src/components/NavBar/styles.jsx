@@ -60,6 +60,14 @@ const styles = () => ({
       width: 20px;
       font-size: 10px
     }
+  `,
+
+  login: css`
+    @media screen and (max-width: 510px) {
+      width: 30px;
+      font-size: 10px;
+      padding: 5px;
+    }
   `
 });
 

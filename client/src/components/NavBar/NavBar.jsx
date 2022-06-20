@@ -50,11 +50,11 @@ const NavBar = () => {
                 <div className="profile" >
                     <Avatar sx={styles.avatar} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
                     <Typography sx={styles.userName} variant="h6">{user.result.name}</Typography>
-                    <Button variant="contained" sx={styles.logout} color="error" onClick={logout}>Logout</Button>
+                    <Button variant="contained" sx={styles.auth} color="error" onClick={logout}>Logout</Button>
                 </div>
             ) : (
                 <div>
-                    <Button component={Link} to="/auth" variant="contained" color="primary">Sign in</Button>
+                    <Button sx={styles.login} component={Link} to="/auth" variant="contained" color="primary">Sign in</Button>
                 </div>
             )}
         </Toolbar>
