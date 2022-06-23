@@ -37,6 +37,13 @@ function styles() {
       padding: 0 16px;
     `,
 
+    message: css`
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    `,
+
     cardAction: css`
       display: block;
       text-align: initial

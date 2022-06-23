@@ -71,7 +71,7 @@ const Post = ({ post, setCurrentId }) => {
                 </div>
                 <Typography sx={styles.title} variant="h5" gutterBottom>{post.title}</Typography>
                 <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
+                    <Typography sx={styles.message} variant="body2" color="textSecondary" component="p">{post.message}</Typography>
                 </CardContent>
             </ButtonBase>
             <CardActions sx={styles.cardActions}>

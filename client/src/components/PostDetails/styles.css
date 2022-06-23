@@ -3,27 +3,32 @@
     width: 100%;
 }
 
-.imageSection {
-    margin-left: 20px;
-}
-
-.recommendedPosts {
+.postDetail {
     display: flex;
 }
 
 .section {
     border-radius: 20px;
     margin: 10px;
+    flex: 1 1;
+}
+
+.imageSection {
+    margin-left: 20px;
+    height: 100%;
     flex: 1;
 }
 
-
 .media {
     border-radius: 20px;
+    width:100%;
+    height:100%;
     object-fit: cover;
-    width: 100%;
-    max-height: 400px;
-    max-width: 712px
+    overflow: hidden;
+}
+
+.recommendedPosts {
+    display: flex;
 }
 
 .commentsOuterContainer {
@@ -33,7 +38,7 @@
 
 .commentsInnerContainer {
     height: 200px;
-    width: 500px;
+    width: 80%;
     overflow-y: auto;
     margin-right: 30px
 }
@@ -59,5 +64,10 @@
 @media (max-width: 600px) {
     .commentsOuterContainer {
         flex-direction: column;
+    }
+
+    .commentsInnerContainer {
+        width: 100%;
+        margin-bottom: 50px;
     }
 }
