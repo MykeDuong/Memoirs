@@ -27,10 +27,6 @@
     overflow: hidden;
 }
 
-.recommendedPosts {
-    display: flex;
-}
-
 .commentsOuterContainer {
     display: flex;
     justify-content: space-between;
@@ -42,6 +38,29 @@
     overflow-y: auto;
     margin-right: 30px
 }
+
+.recommendedPosts {
+    display: flex;
+}
+
+.recommendedPost {
+    max-width: 200px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.recommendedMessage {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.recommendedImageSection {
+    width: 200px;
+    flex: 1;
+}
+
 
 @media (max-width:900px) {
     .card {

@@ -38,6 +38,11 @@ const Post = ({ post, setCurrentId }) => {
         }
     }
 
+    const handleEdit = (e) => {
+        e.stopPropagation();
+        setCurrentId(post._id);
+    }
+
     const Likes = () => {
         if (likes.length > 0) {
             return likes.find((like) => like === userId)
@@ -61,7 +66,7 @@ const Post = ({ post, setCurrentId }) => {
                 </div>
                 {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator) && (
                     <div className="overlay2">
-                        <Button style={{color: "white"}} size="small" onClick={() => {setCurrentId(post._id)}}>
+                        <Button style={{color: "white"}} size="small" onClick={handleEdit}>
                             <MoreHorizIcon fontSize="default" />
                         </Button>
                     </div>
