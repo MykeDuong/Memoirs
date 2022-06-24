@@ -33,6 +33,13 @@ function styles() {
       display: flex;
     `,
 
+    details: css`
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+    `,
+
     title: css`
       padding: 0 16px;
     `,
